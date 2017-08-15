@@ -4,8 +4,6 @@ import {red500, green500, orange500} from 'material-ui/styles/colors';
 
 
 function matchTemplate(template, value){
-    let state = false;
-    let match = '';
     let regexr = '';
     /* if value is empty - we have nothing to validate and we must return to initial state */
     if(value==="")
@@ -26,11 +24,9 @@ function matchTemplate(template, value){
             break;
     }
     /* match */
-    match = value.match(regexr);
+    let match  = value.match(regexr);
     /* compare to value */
-    state = match && match[0] === value;
-
-    return state;
+    return match && match[0] === value;
 }
 
 class TextVariations extends Component {
@@ -44,6 +40,7 @@ class TextVariations extends Component {
 
     constructor(props) {
         super(props);
+        /* init function with template */
         this.matchTemplate = matchTemplate.bind(this,this.props.template);
     }
 
@@ -62,6 +59,7 @@ class TextVariations extends Component {
         let {successText='success', errorText='failure', innerState} = this.state;
 
         let color = "";
+        /* that variable is used to set error or success text */
         let setText = "";
         /* we want to change color and text depend on inner state and value */
         if(innerState){
